@@ -13,7 +13,7 @@ phases:
     commands:
     - echo Build started on `date`
     - echo $IMAGE_URI
-    - mvn clean package -Ddockerfile.skip
+    - echo Building the Docker image...
     - docker build -t $IMAGE_URI:$IMAGE_TAG .
     - docker tag $IMAGE_URI:$IMAGE_TAG 659266464590.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_URI:$IMAGE_TAG
 
