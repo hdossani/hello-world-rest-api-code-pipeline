@@ -7,15 +7,16 @@ phases:
     commands:
     - echo Logging in to Amazon ECR...
     - aws --version
-    - $(aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 659266464590.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com)
-    - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
-    - IMAGE_URI=${REPOSITORY_URI}:${TAG}
+    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 659266464590.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+    
   build:
     commands:
     - echo Build started on `date`
     - echo $IMAGE_URI
     - mvn clean package -Ddockerfile.skip
     - docker build --tag $IMAGE_URI .
+
+
   post_build:
     commands:
     - printenv
