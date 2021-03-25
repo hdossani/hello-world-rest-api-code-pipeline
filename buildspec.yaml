@@ -23,7 +23,7 @@ phases:
     - echo Build completed on `date`
     - echo $(docker images)
     - echo Pushing docker image
-    - docker push $IMAGE_URI
+    - docker push 659266464590.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_URI:$IMAGE_TAG
     - echo push completed
     - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $IMAGE_URI > imagedefinitions.json
 artifacts:
